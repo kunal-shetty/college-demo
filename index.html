@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK Degree College</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background: linear-gradient(90deg, #a000a0, #c700c7);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        header p {
+            margin: 5px 0;
+            font-size: 1.2em;
+        }
+
+        header .logo { 
+            position: absolute;
+            top: 20px; 
+            right: 10px;
+            height: 50px;
+        }
+
+        /* Navbar container */
+        nav {
+            background: linear-gradient(90deg, #8a008a, #c700c7);
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Main menu list */
+        .navbar {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: inline-flex;
+            gap: 2px;
+        }
+
+        /* All list items (main nav) */
+        .navbar > li {
+            position: relative;
+            font-size: large;
+        }
+
+        /* Main links */
+        .navbar > li > a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            transition: background 0.3s;
+        }
+
+        /* Dropdown container */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            margin-top: 10px; /* visual spacing without actual gap */
+            left: 0;
+            background-color: #c700c7;
+            min-width: 180px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 8px 8px;
+            z-index: 1;
+        }
+
+        .dropdown-content li {
+            position: relative;
+            list-style: none;
+            margin-bottom: 5px; /* space between dropdown items */
+        }
+        
+        /* Toggle dropdown on click */
+        .dropdown.open .dropdown-content {
+            display: block;
+        }
+
+        /* Style for links in dropdown items */
+        .dropdown-content li a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Additional styling for dropdown to indicate active state */
+       
+
+        /* Style for the nested dropdown (second level) */
+        .dropdown-content .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content .dropdown .dropdown-content {
+            display: none; /* Hide nested dropdown */
+            position: absolute;
+            top: 0;
+            left: 100%; /* Align to the right of the parent */
+            padding-top: 10px;
+            background-color: #c700c7;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            min-width: 160px;
+            z-index: 2;
+        }
+
+        /* Show the nested dropdown on hover */
+        .dropdown-content .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Style for links in second-level dropdown */
+        .dropdown-content .dropdown .dropdown-content li a {
+            padding: 7.2px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            background: url('college.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #ffcc00;
+            color: #003366;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ffd633;
+            transform: scale(1.1);
+        }
+
+        .gallery {
+    padding: 40px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.gallery h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #9e9e9e;
+    text-shadow: 0 0 5px #c700c7;
+}
+
+.masonry {
+    column-count: 3;
+    column-gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.masonry img {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    break-inside: avoid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.masonry img:hover {
+    transform: scale(1.03);
+}
+
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+            margin-top: 40px;
+        }
+        /* Intro screen */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-size: 4em;
+    transition: opacity 1s ease;
+}
+
+#typing-text {
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid white;
+    animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+    </style>
+</head>
+<body>
+    <div id="intro-screen">
+        <div id="typing-text"></div>
+    </div>
+    
+    <header>
+        <h1>MK Degree College</h1>
+        <p>Empowering Students for a Brighter Tomorrow</p>
+        <img src="imgs/logo.jpeg" alt="Logo" class="logo">
+    </header>
+
+    <nav>
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+    
+            <li class="dropdown">
+                <a href="academics.html" class="summary">Academics</a>
+                <ul class="dropdown-content">
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="schedule.html">Syllabus</a></li>
+                    <li class="dropdown">
+                        <a href="faculty.html">Admission</a>
+                        <ul class="dropdown-content">
+                            <li><a href="apply.html">Important Dates</a></li>
+                            <li><a href="fees.html">Eligibility Criteria</a></li>
+                            <li><a href="requirement.html">UG & PG Admission Form</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="staff.html">Staff</a></li>
+                    <li><a href="scholarships.html">Scholarships</a></li>
+                    <li class="dropdown">
+                        <a href="faculty.html">Examination</a>
+                        <ul class="dropdown-content">
+                            <li><a href="apply.html">Exam Notices</a></li>
+                            <li><a href="fees.html">Schedule Updates</a></li>
+                            <li><a href="requirement.html">Results</a></li>
+                        </ul>
+                    </li>    
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="academics.html" class="summary">Facilities</a>
+                <ul class="dropdown-content">
+                    <li><a href="courses.html">College Clubs</a></li>
+                    <li><a href="schedule.html">Sports</a></li>
+                    <li><a href="schedule.html">Classrooms</a></li>
+                    <li><a href="schedule.html">Medical Aid</a></li>
+                    <li><a href="schedule.html">Counselling</a></li>
+                    <li><a href="schedule.html">Library</a></li>
+                    <li><a href="schedule.html">Placements</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="academics.html" class="summary">Placements</a>
+                <ul class="dropdown-content">
+                    <li><a href="courses.html">Placement Stats</a></li>
+                    <li><a href="courses.html">Visiting Companies</a></li>
+                    <li><a href="courses.html">Alumnis</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="academics.html" class="summary">Contact</a>
+                <ul class="dropdown-content">
+                    <li><a href="courses.html">AI Chatbot</a></li>
+                    <li><a href="courses.html">Personal Assitant</a></li>
+                </ul>
+            </li>        
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h2>Welcome to MK Degree College</h2>
+        <p>Your Gateway to Excellence in Education</p>
+        <button class="button"><a href="home.html">Explore Now</a></button>
+    </div>
+    <section class="gallery">
+        <h2>Campus Life at MK College</h2>
+        <div class="masonry">
+            <img src="imgs/test.jpeg" alt="Campus View">
+            <img src="imgs/test.jpeg" alt="Library">
+            <img src="imgs/test.jpeg" alt="Lab">
+            <img src="imgs/test.jpeg" alt="Sports Ground">
+            <img src="imgs/test.jpeg" alt="Auditorium">
+            <img src="imgs/test.jpeg" alt="Classroom">
+            <!-- Add more images as needed -->
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 MK Degree College. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Select all elements with the 'dropdown' class
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a'); // The clickable link
+            const dropdownContent = dropdown.querySelector('.dropdown-content'); // The dropdown content
+
+            // Toggle the dropdown visibility when clicking the main link
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default link redirection for now
+                
+                // Toggle the dropdown visibility
+                dropdown.classList.toggle('open');
+                
+                // If the dropdown is not open, proceed with redirection
+                if (!dropdown.classList.contains('open')) {
+                    window.location.href = link.href;
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        });
+        const introScreen = document.getElementById("intro-screen");
+    const typingText = document.getElementById("typing-text");
+    const message = "Welcome to MK College";
+    let index = 0;
+
+    function typeNextChar() {
+        if (index < message.length) {
+            typingText.textContent += message.charAt(index);
+            index++;
+            setTimeout(typeNextChar, 100); // Speed of typing
+        } else {
+            // After typing finishes, pause, then fade to black, then show main page
+            setTimeout(() => {
+                introScreen.style.opacity = '0';
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                }, 1000); // Fade duration
+            }, 1000); // Pause before fade out
+        }
+    }
+
+    // Disable scrolling while intro is active
+    document.body.style.overflow = 'hidden';
+
+    window.onload = () => {
+        typeNextChar();
+
+        // After intro hides, re-enable scroll
+        setTimeout(() => {
+            document.body.style.overflow = '';
+        }, message.length * 100 + 2000); // typing duration + pause + fade
+    };
+    </script>
+</body>
+</html>
